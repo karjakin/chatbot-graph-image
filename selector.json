@@ -1,0 +1,196 @@
+{
+  "5": {
+    "inputs": {
+      "image": "ComfyUI_temp_dbbto_00035_.png",
+      "upload": "image"
+    },
+    "class_type": "LoadImage",
+    "_meta": {
+      "title": "Load Image"
+    }
+  },
+  "6": {
+    "inputs": {
+      "threshold": 0.5,
+      "dilation": 10,
+      "crop_factor": 3,
+      "drop_size": 10,
+      "labels": "all",
+      "segm_detector": [
+        "7",
+        1
+      ],
+      "image": [
+        "5",
+        0
+      ]
+    },
+    "class_type": "SegmDetectorSEGS",
+    "_meta": {
+      "title": "SEGM Detector (SEGS)"
+    }
+  },
+  "7": {
+    "inputs": {
+      "model_name": "segm/person_yolov8m-seg.pt"
+    },
+    "class_type": "UltralyticsDetectorProvider",
+    "_meta": {
+      "title": "UltralyticsDetectorProvider"
+    }
+  },
+  "8": {
+    "inputs": {
+      "segs": [
+        "6",
+        0
+      ]
+    },
+    "class_type": "ImpactSEGSToMaskList",
+    "_meta": {
+      "title": "SEGS to Mask List"
+    }
+  },
+  "9": {
+    "inputs": {
+      "mask": [
+        "8",
+        0
+      ]
+    },
+    "class_type": "MaskToImage",
+    "_meta": {
+      "title": "Convert Mask to Image"
+    }
+  },
+  "10": {
+    "inputs": {
+      "images": [
+        "9",
+        0
+      ]
+    },
+    "class_type": "PreviewImage",
+    "_meta": {
+      "title": "Preview Image"
+    }
+  },
+  "16": {
+    "inputs": {
+      "force_resize_width": 0,
+      "force_resize_height": 0,
+      "image": [
+        "5",
+        0
+      ],
+      "mask": [
+        "9",
+        0
+      ]
+    },
+    "class_type": "Cut By Mask",
+    "_meta": {
+      "title": "Cut By Mask"
+    }
+  },
+  "19": {
+    "inputs": {
+      "images": [
+        "16",
+        0
+      ]
+    },
+    "class_type": "PreviewImage",
+    "_meta": {
+      "title": "Preview Image"
+    }
+  },
+  "25": {
+    "inputs": {
+      "resize_behavior": "keep_ratio_fill",
+      "image_base": [
+        "29",
+        0
+      ],
+      "image_to_paste": [
+        "16",
+        0
+      ],
+      "mask": [
+        "16",
+        0
+      ]
+    },
+    "class_type": "Paste By Mask",
+    "_meta": {
+      "title": "Paste By Mask"
+    }
+  },
+  "28": {
+    "inputs": {
+      "value": [
+        "16",
+        0
+      ]
+    },
+    "class_type": "ImpactImageInfo",
+    "_meta": {
+      "title": "ImpactImageInfo"
+    }
+  },
+  "29": {
+    "inputs": {
+      "width": [
+        "28",
+        2
+      ],
+      "height": [
+        "28",
+        1
+      ],
+      "batch_size": 1,
+      "color": 0
+    },
+    "class_type": "EmptyImage",
+    "_meta": {
+      "title": "EmptyImage"
+    }
+  },
+  "30": {
+    "inputs": {
+      "images": [
+        "25",
+        0
+      ]
+    },
+    "class_type": "PreviewImage",
+    "_meta": {
+      "title": "Preview Image"
+    }
+  },
+  "32": {
+    "inputs": {
+      "output_path": "[time(%Y-%m-%d)]",
+      "filename_prefix": "persona",
+      "filename_delimiter": "_",
+      "filename_number_padding": 4,
+      "filename_number_start": "false",
+      "extension": "png",
+      "quality": 100,
+      "lossless_webp": "false",
+      "overwrite_mode": "false",
+      "show_history": "false",
+      "show_history_by_prefix": "true",
+      "embed_workflow": "true",
+      "show_previews": "true",
+      "images": [
+        "25",
+        0
+      ]
+    },
+    "class_type": "Image Save",
+    "_meta": {
+      "title": "Image Save"
+    }
+  }
+}

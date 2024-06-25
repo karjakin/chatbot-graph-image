@@ -1,0 +1,666 @@
+{
+  "2": {
+    "inputs": {
+      "prompt": [
+        "91",
+        0
+      ],
+      "threshold": 0.3,
+      "sam_model": [
+        "97",
+        0
+      ],
+      "grounding_dino_model": [
+        "95",
+        0
+      ],
+      "image": [
+        "186",
+        0
+      ]
+    },
+    "class_type": "GroundingDinoSAMSegment (segment anything)",
+    "_meta": {
+      "title": "GroundingDinoSAMSegment (segment anything)"
+    }
+  },
+  "6": {
+    "inputs": {
+      "mask": [
+        "2",
+        1
+      ]
+    },
+    "class_type": "InvertMask (segment anything)",
+    "_meta": {
+      "title": "InvertMask (segment anything)"
+    }
+  },
+  "7": {
+    "inputs": {
+      "masks": [
+        "6",
+        0
+      ]
+    },
+    "class_type": "Convert Masks to Images",
+    "_meta": {
+      "title": "Convert Masks to Images"
+    }
+  },
+  "13": {
+    "inputs": {
+      "images": [
+        "7",
+        0
+      ]
+    },
+    "class_type": "PreviewImage",
+    "_meta": {
+      "title": "Preview Image"
+    }
+  },
+  "14": {
+    "inputs": {
+      "images": [
+        "2",
+        0
+      ]
+    },
+    "class_type": "PreviewImage",
+    "_meta": {
+      "title": "Preview Image"
+    }
+  },
+  "33": {
+    "inputs": {
+      "add_noise": "enable",
+      "noise_seed": 9017782221339,
+      "steps": 22,
+      "cfg": 5.5,
+      "sampler_name": "euler",
+      "scheduler": "normal",
+      "start_at_step": 0,
+      "end_at_step": 9700,
+      "return_with_leftover_noise": "disable",
+      "model": [
+        "92",
+        0
+      ],
+      "positive": [
+        "50",
+        0
+      ],
+      "negative": [
+        "50",
+        1
+      ],
+      "latent_image": [
+        "54",
+        0
+      ]
+    },
+    "class_type": "KSamplerAdvanced",
+    "_meta": {
+      "title": "KSampler (Advanced)"
+    }
+  },
+  "35": {
+    "inputs": {
+      "text": "embedding:easynegative, embedding:ng_deepnegative_v1_75t, illustration, bokeh, low resolution, bad anatomy, painting, drawing, cartoon, bad quality, low quality",
+      "clip": [
+        "92",
+        1
+      ]
+    },
+    "class_type": "CLIPTextEncode",
+    "_meta": {
+      "title": "CLIP Text Encode (Prompt)"
+    }
+  },
+  "39": {
+    "inputs": {
+      "samples": [
+        "33",
+        0
+      ],
+      "vae": [
+        "92",
+        2
+      ]
+    },
+    "class_type": "VAEDecode",
+    "_meta": {
+      "title": "VAE Decode"
+    }
+  },
+  "50": {
+    "inputs": {
+      "strength": 0.7000000000000001,
+      "start_percent": 0,
+      "end_percent": 0.8,
+      "positive": [
+        "162",
+        0
+      ],
+      "negative": [
+        "35",
+        0
+      ],
+      "control_net": [
+        "51",
+        0
+      ],
+      "image": [
+        "66",
+        0
+      ]
+    },
+    "class_type": "ControlNetApplyAdvanced",
+    "_meta": {
+      "title": "Apply ControlNet (Advanced)"
+    }
+  },
+  "51": {
+    "inputs": {
+      "control_net_name": "control-lora-canny-rank256.safetensors"
+    },
+    "class_type": "ControlNetLoaderAdvanced",
+    "_meta": {
+      "title": "Load Advanced ControlNet Model 🛂🅐🅒🅝"
+    }
+  },
+  "53": {
+    "inputs": {
+      "images": [
+        "66",
+        0
+      ]
+    },
+    "class_type": "PreviewImage",
+    "_meta": {
+      "title": "Preview Image"
+    }
+  },
+  "54": {
+    "inputs": {
+      "grow_mask_by": 6,
+      "pixels": [
+        "2",
+        0
+      ],
+      "vae": [
+        "92",
+        2
+      ],
+      "mask": [
+        "6",
+        0
+      ]
+    },
+    "class_type": "VAEEncodeForInpaint",
+    "_meta": {
+      "title": "VAE Encode (for Inpainting)"
+    }
+  },
+  "66": {
+    "inputs": {
+      "enable_threshold": "false",
+      "threshold_low": 0.1,
+      "threshold_high": 0.3,
+      "images": [
+        "2",
+        0
+      ]
+    },
+    "class_type": "Image Canny Filter",
+    "_meta": {
+      "title": "Image Canny Filter"
+    }
+  },
+  "91": {
+    "inputs": {
+      "Text": "person"
+    },
+    "class_type": "Text box",
+    "_meta": {
+      "title": "Text box"
+    }
+  },
+  "92": {
+    "inputs": {
+      "ckpt_name": "albedobaseXL_v21.safetensors"
+    },
+    "class_type": "CheckpointLoaderSimple",
+    "_meta": {
+      "title": "Load Checkpoint"
+    }
+  },
+  "95": {
+    "inputs": {
+      "model_name": "GroundingDINO_SwinB (938MB)"
+    },
+    "class_type": "GroundingDinoModelLoader (segment anything)",
+    "_meta": {
+      "title": "GroundingDinoModelLoader (segment anything)"
+    }
+  },
+  "97": {
+    "inputs": {
+      "model_name": "sam_hq_vit_h (2.57GB)"
+    },
+    "class_type": "SAMModelLoader (segment anything)",
+    "_meta": {
+      "title": "SAMModelLoader (segment anything)"
+    }
+  },
+  "113": {
+    "inputs": {
+      "value": [
+        "2",
+        0
+      ]
+    },
+    "class_type": "ImpactImageInfo",
+    "_meta": {
+      "title": "ImpactImageInfo"
+    }
+  },
+  "160": {
+    "inputs": {
+      "images": [
+        "39",
+        0
+      ]
+    },
+    "class_type": "PreviewImage",
+    "_meta": {
+      "title": "Preview Image"
+    }
+  },
+  "161": {
+    "inputs": {
+      "output_path": "[time(%Y-%m-%d)]",
+      "filename_prefix": "background",
+      "filename_delimiter": "_",
+      "filename_number_padding": 4,
+      "filename_number_start": "false",
+      "extension": "png",
+      "quality": 100,
+      "lossless_webp": "false",
+      "overwrite_mode": "false",
+      "show_history": "false",
+      "show_history_by_prefix": "true",
+      "embed_workflow": "true",
+      "show_previews": "true",
+      "images": [
+        "39",
+        0
+      ]
+    },
+    "class_type": "Image Save",
+    "_meta": {
+      "title": "Image Save"
+    }
+  },
+  "162": {
+    "inputs": {
+      "text": "Ancient castle in the fog surrounded by a mysterious forest, secret passages, forgotten treasures",
+      "clip": [
+        "92",
+        1
+      ]
+    },
+    "class_type": "CLIPTextEncode",
+    "_meta": {
+      "title": "CLIP Text Encode (Prompt)"
+    }
+  },
+  "163": {
+    "inputs": {
+      "image": "ComfyUI_temp_phxio_00022_.png",
+      "upload": "image"
+    },
+    "class_type": "LoadImage",
+    "_meta": {
+      "title": "Upload product image:"
+    }
+  },
+  "164": {
+    "inputs": {
+      "image": "ComfyUI_temp_tdgjh_00002_ (1).png",
+      "upload": "image"
+    },
+    "class_type": "LoadImage",
+    "_meta": {
+      "title": "Load Image"
+    }
+  },
+  "165": {
+    "inputs": {
+      "width": 4096,
+      "height": 1536,
+      "batch_size": 1,
+      "color": 0
+    },
+    "class_type": "EmptyImage",
+    "_meta": {
+      "title": "EmptyImage"
+    }
+  },
+  "166": {
+    "inputs": {
+      "images": [
+        "165",
+        0
+      ]
+    },
+    "class_type": "PreviewImage",
+    "_meta": {
+      "title": "Preview Image"
+    }
+  },
+  "167": {
+    "inputs": {
+      "resize_behavior": "resize",
+      "image_base": [
+        "165",
+        0
+      ],
+      "image_to_paste": [
+        "163",
+        0
+      ],
+      "mask": [
+        "171",
+        0
+      ]
+    },
+    "class_type": "Paste By Mask",
+    "_meta": {
+      "title": "Paste By Mask"
+    }
+  },
+  "168": {
+    "inputs": {
+      "mode": "pixels",
+      "origin": "bottomleft",
+      "x": 1024,
+      "y": 0,
+      "width": 1024,
+      "height": 1024,
+      "image_width": [
+        "175",
+        2
+      ],
+      "image_height": [
+        "175",
+        1
+      ]
+    },
+    "class_type": "Create Rect Mask",
+    "_meta": {
+      "title": "Create Rect Mask"
+    }
+  },
+  "169": {
+    "inputs": {
+      "images": [
+        "168",
+        0
+      ]
+    },
+    "class_type": "PreviewImage",
+    "_meta": {
+      "title": "Preview Image"
+    }
+  },
+  "170": {
+    "inputs": {
+      "images": [
+        "167",
+        0
+      ]
+    },
+    "class_type": "PreviewImage",
+    "_meta": {
+      "title": "Preview Image"
+    }
+  },
+  "171": {
+    "inputs": {
+      "mode": "pixels",
+      "origin": "bottomleft",
+      "x": 0,
+      "y": 0,
+      "width": 1024,
+      "height": 1024,
+      "image_width": [
+        "175",
+        2
+      ],
+      "image_height": [
+        "175",
+        1
+      ]
+    },
+    "class_type": "Create Rect Mask",
+    "_meta": {
+      "title": "Create Rect Mask"
+    }
+  },
+  "172": {
+    "inputs": {
+      "resize_behavior": "resize",
+      "image_base": [
+        "167",
+        0
+      ],
+      "image_to_paste": [
+        "164",
+        0
+      ],
+      "mask": [
+        "168",
+        0
+      ]
+    },
+    "class_type": "Paste By Mask",
+    "_meta": {
+      "title": "Paste By Mask"
+    }
+  },
+  "173": {
+    "inputs": {
+      "images": [
+        "172",
+        0
+      ]
+    },
+    "class_type": "PreviewImage",
+    "_meta": {
+      "title": "Preview Image"
+    }
+  },
+  "174": {
+    "inputs": {
+      "image": "ComfyUI_temp_tdgjh_00003_ (1).png",
+      "upload": "image"
+    },
+    "class_type": "LoadImage",
+    "_meta": {
+      "title": "Load Image"
+    }
+  },
+  "175": {
+    "inputs": {
+      "value": [
+        "165",
+        0
+      ]
+    },
+    "class_type": "ImpactImageInfo",
+    "_meta": {
+      "title": "ImpactImageInfo"
+    }
+  },
+  "176": {
+    "inputs": {
+      "mode": "pixels",
+      "origin": "bottomleft",
+      "x": 2048,
+      "y": 0,
+      "width": 1024,
+      "height": 1024,
+      "image_width": [
+        "175",
+        2
+      ],
+      "image_height": [
+        "175",
+        1
+      ]
+    },
+    "class_type": "Create Rect Mask",
+    "_meta": {
+      "title": "Create Rect Mask"
+    }
+  },
+  "177": {
+    "inputs": {
+      "images": [
+        "176",
+        0
+      ]
+    },
+    "class_type": "PreviewImage",
+    "_meta": {
+      "title": "Preview Image"
+    }
+  },
+  "178": {
+    "inputs": {
+      "resize_behavior": "resize",
+      "image_base": [
+        "172",
+        0
+      ],
+      "image_to_paste": [
+        "174",
+        0
+      ],
+      "mask": [
+        "176",
+        0
+      ]
+    },
+    "class_type": "Paste By Mask",
+    "_meta": {
+      "title": "Paste By Mask"
+    }
+  },
+  "179": {
+    "inputs": {
+      "images": [
+        "178",
+        0
+      ]
+    },
+    "class_type": "PreviewImage",
+    "_meta": {
+      "title": "Preview Image"
+    }
+  },
+  "180": {
+    "inputs": {
+      "mode": "pixels",
+      "origin": "bottomleft",
+      "x": 3072,
+      "y": 0,
+      "width": 1024,
+      "height": 1024,
+      "image_width": [
+        "175",
+        2
+      ],
+      "image_height": [
+        "175",
+        1
+      ]
+    },
+    "class_type": "Create Rect Mask",
+    "_meta": {
+      "title": "Create Rect Mask"
+    }
+  },
+  "181": {
+    "inputs": {
+      "images": [
+        "180",
+        0
+      ]
+    },
+    "class_type": "PreviewImage",
+    "_meta": {
+      "title": "Preview Image"
+    }
+  },
+  "182": {
+    "inputs": {
+      "resize_behavior": "resize",
+      "image_base": [
+        "178",
+        0
+      ],
+      "image_to_paste": [
+        "183",
+        0
+      ],
+      "mask": [
+        "180",
+        0
+      ]
+    },
+    "class_type": "Paste By Mask",
+    "_meta": {
+      "title": "Paste By Mask"
+    }
+  },
+  "183": {
+    "inputs": {
+      "image": "ComfyUI_temp_tdgjh_00004_ (3).png",
+      "upload": "image"
+    },
+    "class_type": "LoadImage",
+    "_meta": {
+      "title": "Load Image"
+    }
+  },
+  "184": {
+    "inputs": {
+      "images": [
+        "182",
+        0
+      ]
+    },
+    "class_type": "PreviewImage",
+    "_meta": {
+      "title": "Preview Image"
+    }
+  },
+  "186": {
+    "inputs": {
+      "upscale_by": 0.75,
+      "upscale_method": "nearest-exact",
+      "crop": "disabled",
+      "image": [
+        "182",
+        0
+      ]
+    },
+    "class_type": "Image scale by ratio",
+    "_meta": {
+      "title": "Image scale by ratio"
+    }
+  }
+}

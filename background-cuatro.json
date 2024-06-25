@@ -1,0 +1,797 @@
+{
+  "2": {
+    "inputs": {
+      "prompt": [
+        "91",
+        0
+      ],
+      "threshold": 0.3,
+      "sam_model": [
+        "97",
+        0
+      ],
+      "grounding_dino_model": [
+        "95",
+        0
+      ],
+      "image": [
+        "174",
+        0
+      ]
+    },
+    "class_type": "GroundingDinoSAMSegment (segment anything)",
+    "_meta": {
+      "title": "GroundingDinoSAMSegment (segment anything)"
+    }
+  },
+  "4": {
+    "inputs": {
+      "image": "ComfyUI_temp_phxio_00022_.png",
+      "upload": "image"
+    },
+    "class_type": "LoadImage",
+    "_meta": {
+      "title": "Upload product image:"
+    }
+  },
+  "6": {
+    "inputs": {
+      "mask": [
+        "2",
+        1
+      ]
+    },
+    "class_type": "InvertMask (segment anything)",
+    "_meta": {
+      "title": "InvertMask (segment anything)"
+    }
+  },
+  "7": {
+    "inputs": {
+      "masks": [
+        "6",
+        0
+      ]
+    },
+    "class_type": "Convert Masks to Images",
+    "_meta": {
+      "title": "Convert Masks to Images"
+    }
+  },
+  "13": {
+    "inputs": {
+      "images": [
+        "7",
+        0
+      ]
+    },
+    "class_type": "PreviewImage",
+    "_meta": {
+      "title": "Preview Image"
+    }
+  },
+  "14": {
+    "inputs": {
+      "images": [
+        "2",
+        0
+      ]
+    },
+    "class_type": "PreviewImage",
+    "_meta": {
+      "title": "Preview Image"
+    }
+  },
+  "24": {
+    "inputs": {
+      "stop_at_clip_layer": -3,
+      "clip": [
+        "92",
+        1
+      ]
+    },
+    "class_type": "CLIPSetLastLayer",
+    "_meta": {
+      "title": "CLIP Set Last Layer"
+    }
+  },
+  "33": {
+    "inputs": {
+      "add_noise": "enable",
+      "noise_seed": [
+        "41",
+        0
+      ],
+      "steps": 21,
+      "cfg": 5.5,
+      "sampler_name": "dpmpp_3m_sde_gpu",
+      "scheduler": "karras",
+      "start_at_step": 0,
+      "end_at_step": 9700,
+      "return_with_leftover_noise": "disable",
+      "model": [
+        "92",
+        0
+      ],
+      "positive": [
+        "50",
+        0
+      ],
+      "negative": [
+        "50",
+        1
+      ],
+      "latent_image": [
+        "54",
+        0
+      ]
+    },
+    "class_type": "KSamplerAdvanced",
+    "_meta": {
+      "title": "KSampler (Advanced)"
+    }
+  },
+  "34": {
+    "inputs": {
+      "text": [
+        "85",
+        0
+      ],
+      "clip": [
+        "24",
+        0
+      ]
+    },
+    "class_type": "CLIPTextEncode",
+    "_meta": {
+      "title": "CLIP Text Encode (Prompt)"
+    }
+  },
+  "35": {
+    "inputs": {
+      "text": "embedding:easynegative, embedding:ng_deepnegative_v1_75t, illustration, bokeh, low resolution, bad anatomy, painting, drawing, cartoon, bad quality, low quality",
+      "clip": [
+        "24",
+        0
+      ]
+    },
+    "class_type": "CLIPTextEncode",
+    "_meta": {
+      "title": "CLIP Text Encode (Prompt)"
+    }
+  },
+  "39": {
+    "inputs": {
+      "samples": [
+        "33",
+        0
+      ],
+      "vae": [
+        "92",
+        2
+      ]
+    },
+    "class_type": "VAEDecode",
+    "_meta": {
+      "title": "VAE Decode"
+    }
+  },
+  "40": {
+    "inputs": {
+      "images": [
+        "39",
+        0
+      ]
+    },
+    "class_type": "PreviewImage",
+    "_meta": {
+      "title": "Preview Image"
+    }
+  },
+  "41": {
+    "inputs": {
+      "seed": 92051581741227
+    },
+    "class_type": "Seed (rgthree)",
+    "_meta": {
+      "title": "Seed (rgthree)"
+    }
+  },
+  "50": {
+    "inputs": {
+      "strength": 0.85,
+      "start_percent": 0,
+      "end_percent": 0.8,
+      "positive": [
+        "34",
+        0
+      ],
+      "negative": [
+        "35",
+        0
+      ],
+      "control_net": [
+        "51",
+        0
+      ],
+      "image": [
+        "66",
+        0
+      ]
+    },
+    "class_type": "ControlNetApplyAdvanced",
+    "_meta": {
+      "title": "Apply ControlNet (Advanced)"
+    }
+  },
+  "51": {
+    "inputs": {
+      "control_net_name": "control-lora-canny-rank256.safetensors"
+    },
+    "class_type": "ControlNetLoaderAdvanced",
+    "_meta": {
+      "title": "Load Advanced ControlNet Model 🛂🅐🅒🅝"
+    }
+  },
+  "53": {
+    "inputs": {
+      "images": [
+        "66",
+        0
+      ]
+    },
+    "class_type": "PreviewImage",
+    "_meta": {
+      "title": "Preview Image"
+    }
+  },
+  "54": {
+    "inputs": {
+      "grow_mask_by": 6,
+      "pixels": [
+        "2",
+        0
+      ],
+      "vae": [
+        "92",
+        2
+      ],
+      "mask": [
+        "6",
+        0
+      ]
+    },
+    "class_type": "VAEEncodeForInpaint",
+    "_meta": {
+      "title": "VAE Encode (for Inpainting)"
+    }
+  },
+  "66": {
+    "inputs": {
+      "enable_threshold": "false",
+      "threshold_low": 0.1,
+      "threshold_high": 0.3,
+      "images": [
+        "2",
+        0
+      ]
+    },
+    "class_type": "Image Canny Filter",
+    "_meta": {
+      "title": "Image Canny Filter"
+    }
+  },
+  "83": {
+    "inputs": {
+      "Text": "Gothic horror inspired manga. A creepy abandoned mansion amidst a blizzard; vampiric Edward Cullen lurking in the shadows; by Junji Ito, Kōji Kumeta, an anime as an NFT character."
+    },
+    "class_type": "Text box",
+    "_meta": {
+      "title": "Background Prompt"
+    }
+  },
+  "85": {
+    "inputs": {
+      "delimiter": "",
+      "clean_whitespace": "true",
+      "text_a": [
+        "87",
+        0
+      ],
+      "text_b": [
+        "83",
+        0
+      ],
+      "text_c": [
+        "86",
+        0
+      ]
+    },
+    "class_type": "Text Concatenate",
+    "_meta": {
+      "title": "Text Concatenate"
+    }
+  },
+  "86": {
+    "inputs": {
+      "Text": ", intricate detail, 8k"
+    },
+    "class_type": "Text box",
+    "_meta": {
+      "title": "Text box"
+    }
+  },
+  "87": {
+    "inputs": {
+      "Text": "profesional photo, 4k"
+    },
+    "class_type": "Text box",
+    "_meta": {
+      "title": "Text box"
+    }
+  },
+  "91": {
+    "inputs": {
+      "Text": "persons"
+    },
+    "class_type": "Text box",
+    "_meta": {
+      "title": "What to select:"
+    }
+  },
+  "92": {
+    "inputs": {
+      "ckpt_name": "albedobaseXL_v21.safetensors"
+    },
+    "class_type": "CheckpointLoaderSimple",
+    "_meta": {
+      "title": "Load Checkpoint"
+    }
+  },
+  "95": {
+    "inputs": {
+      "model_name": "GroundingDINO_SwinB (938MB)"
+    },
+    "class_type": "GroundingDinoModelLoader (segment anything)",
+    "_meta": {
+      "title": "GroundingDinoModelLoader (segment anything)"
+    }
+  },
+  "97": {
+    "inputs": {
+      "model_name": "sam_hq_vit_h (2.57GB)"
+    },
+    "class_type": "SAMModelLoader (segment anything)",
+    "_meta": {
+      "title": "SAMModelLoader (segment anything)"
+    }
+  },
+  "108": {
+    "inputs": {
+      "image": "ComfyUI_temp_tdgjh_00002_ (1).png",
+      "upload": "image"
+    },
+    "class_type": "LoadImage",
+    "_meta": {
+      "title": "Load Image"
+    }
+  },
+  "113": {
+    "inputs": {
+      "value": [
+        "2",
+        0
+      ]
+    },
+    "class_type": "ImpactImageInfo",
+    "_meta": {
+      "title": "ImpactImageInfo"
+    }
+  },
+  "148": {
+    "inputs": {
+      "width": 4096,
+      "height": 2048,
+      "batch_size": 1,
+      "color": 0
+    },
+    "class_type": "EmptyImage",
+    "_meta": {
+      "title": "EmptyImage"
+    }
+  },
+  "149": {
+    "inputs": {
+      "images": [
+        "148",
+        0
+      ]
+    },
+    "class_type": "PreviewImage",
+    "_meta": {
+      "title": "Preview Image"
+    }
+  },
+  "150": {
+    "inputs": {
+      "resize_behavior": "resize",
+      "image_base": [
+        "148",
+        0
+      ],
+      "image_to_paste": [
+        "4",
+        0
+      ],
+      "mask": [
+        "154",
+        0
+      ]
+    },
+    "class_type": "Paste By Mask",
+    "_meta": {
+      "title": "Paste By Mask"
+    }
+  },
+  "151": {
+    "inputs": {
+      "mode": "pixels",
+      "origin": "bottomleft",
+      "x": 1024,
+      "y": 0,
+      "width": 1024,
+      "height": 1024,
+      "image_width": [
+        "162",
+        2
+      ],
+      "image_height": [
+        "162",
+        1
+      ]
+    },
+    "class_type": "Create Rect Mask",
+    "_meta": {
+      "title": "Create Rect Mask"
+    }
+  },
+  "152": {
+    "inputs": {
+      "images": [
+        "151",
+        0
+      ]
+    },
+    "class_type": "PreviewImage",
+    "_meta": {
+      "title": "Preview Image"
+    }
+  },
+  "153": {
+    "inputs": {
+      "images": [
+        "150",
+        0
+      ]
+    },
+    "class_type": "PreviewImage",
+    "_meta": {
+      "title": "Preview Image"
+    }
+  },
+  "154": {
+    "inputs": {
+      "mode": "pixels",
+      "origin": "bottomleft",
+      "x": 0,
+      "y": 0,
+      "width": 1024,
+      "height": 1024,
+      "image_width": [
+        "162",
+        2
+      ],
+      "image_height": [
+        "162",
+        1
+      ]
+    },
+    "class_type": "Create Rect Mask",
+    "_meta": {
+      "title": "Create Rect Mask"
+    }
+  },
+  "155": {
+    "inputs": {
+      "resize_behavior": "resize",
+      "image_base": [
+        "150",
+        0
+      ],
+      "image_to_paste": [
+        "108",
+        0
+      ],
+      "mask": [
+        "151",
+        0
+      ]
+    },
+    "class_type": "Paste By Mask",
+    "_meta": {
+      "title": "Paste By Mask"
+    }
+  },
+  "156": {
+    "inputs": {
+      "images": [
+        "155",
+        0
+      ]
+    },
+    "class_type": "PreviewImage",
+    "_meta": {
+      "title": "Preview Image"
+    }
+  },
+  "158": {
+    "inputs": {
+      "supir_model": "SUPIR-v0Q.ckpt",
+      "sdxl_model": "albedobaseXL_v21.safetensors",
+      "seed": 1020545053280573,
+      "resize_method": "lanczos",
+      "scale_by": 1,
+      "steps": 25,
+      "restoration_scale": -1,
+      "cfg_scale": 7.5,
+      "a_prompt": "high quality, detailed, 4k, deep texture, cinematic",
+      "n_prompt": "bad quality, blurry, messy",
+      "s_churn": 5,
+      "s_noise": 1.003,
+      "control_scale": 1,
+      "cfg_scale_start": 0,
+      "control_scale_start": 0,
+      "color_fix_type": "None",
+      "keep_model_loaded": true,
+      "use_tiled_vae": true,
+      "encoder_tile_size_pixels": 512,
+      "decoder_tile_size_latent": 64,
+      "captions": [
+        "87",
+        0
+      ],
+      "diffusion_dtype": "auto",
+      "encoder_dtype": "auto",
+      "batch_size": 1,
+      "use_tiled_sampling": false,
+      "sampler_tile_size": 1024,
+      "sampler_tile_stride": 512,
+      "image": [
+        "39",
+        0
+      ]
+    },
+    "class_type": "SUPIR_Upscale",
+    "_meta": {
+      "title": "SUPIR_Upscale"
+    }
+  },
+  "160": {
+    "inputs": {
+      "images": [
+        "158",
+        0
+      ]
+    },
+    "class_type": "PreviewImage",
+    "_meta": {
+      "title": "Preview Image"
+    }
+  },
+  "161": {
+    "inputs": {
+      "image": "ComfyUI_temp_tdgjh_00003_ (1).png",
+      "upload": "image"
+    },
+    "class_type": "LoadImage",
+    "_meta": {
+      "title": "Load Image"
+    }
+  },
+  "162": {
+    "inputs": {
+      "value": [
+        "148",
+        0
+      ]
+    },
+    "class_type": "ImpactImageInfo",
+    "_meta": {
+      "title": "ImpactImageInfo"
+    }
+  },
+  "164": {
+    "inputs": {
+      "mode": "pixels",
+      "origin": "bottomleft",
+      "x": 2048,
+      "y": 0,
+      "width": 1024,
+      "height": 1024,
+      "image_width": [
+        "162",
+        2
+      ],
+      "image_height": [
+        "162",
+        1
+      ]
+    },
+    "class_type": "Create Rect Mask",
+    "_meta": {
+      "title": "Create Rect Mask"
+    }
+  },
+  "165": {
+    "inputs": {
+      "images": [
+        "164",
+        0
+      ]
+    },
+    "class_type": "PreviewImage",
+    "_meta": {
+      "title": "Preview Image"
+    }
+  },
+  "166": {
+    "inputs": {
+      "resize_behavior": "resize",
+      "image_base": [
+        "155",
+        0
+      ],
+      "image_to_paste": [
+        "161",
+        0
+      ],
+      "mask": [
+        "164",
+        0
+      ]
+    },
+    "class_type": "Paste By Mask",
+    "_meta": {
+      "title": "Paste By Mask"
+    }
+  },
+  "167": {
+    "inputs": {
+      "images": [
+        "166",
+        0
+      ]
+    },
+    "class_type": "PreviewImage",
+    "_meta": {
+      "title": "Preview Image"
+    }
+  },
+  "169": {
+    "inputs": {
+      "mode": "pixels",
+      "origin": "bottomleft",
+      "x": 3072,
+      "y": 0,
+      "width": 1024,
+      "height": 1024,
+      "image_width": [
+        "162",
+        2
+      ],
+      "image_height": [
+        "162",
+        1
+      ]
+    },
+    "class_type": "Create Rect Mask",
+    "_meta": {
+      "title": "Create Rect Mask"
+    }
+  },
+  "170": {
+    "inputs": {
+      "images": [
+        "169",
+        0
+      ]
+    },
+    "class_type": "PreviewImage",
+    "_meta": {
+      "title": "Preview Image"
+    }
+  },
+  "171": {
+    "inputs": {
+      "resize_behavior": "resize",
+      "image_base": [
+        "166",
+        0
+      ],
+      "image_to_paste": [
+        "172",
+        0
+      ],
+      "mask": [
+        "169",
+        0
+      ]
+    },
+    "class_type": "Paste By Mask",
+    "_meta": {
+      "title": "Paste By Mask"
+    }
+  },
+  "172": {
+    "inputs": {
+      "image": "ComfyUI_temp_tdgjh_00004_ (3).png",
+      "upload": "image"
+    },
+    "class_type": "LoadImage",
+    "_meta": {
+      "title": "Load Image"
+    }
+  },
+  "173": {
+    "inputs": {
+      "images": [
+        "171",
+        0
+      ]
+    },
+    "class_type": "PreviewImage",
+    "_meta": {
+      "title": "Preview Image"
+    }
+  },
+  "174": {
+    "inputs": {
+      "upscale_by": 0.5,
+      "upscale_method": "nearest-exact",
+      "crop": "disabled",
+      "image": [
+        "171",
+        0
+      ]
+    },
+    "class_type": "Image scale by ratio",
+    "_meta": {
+      "title": "Image scale by ratio"
+    }
+  },
+  "177": {
+    "inputs": {
+      "output_path": "[time(%Y-%m-%d)]",
+      "filename_prefix": "background-cuatro",
+      "filename_delimiter": "_",
+      "filename_number_padding": 4,
+      "filename_number_start": "false",
+      "extension": "png",
+      "quality": 100,
+      "lossless_webp": "false",
+      "overwrite_mode": "false",
+      "show_history": "false",
+      "show_history_by_prefix": "true",
+      "embed_workflow": "true",
+      "show_previews": "true",
+      "images": [
+        "158",
+        0
+      ]
+    },
+    "class_type": "Image Save",
+    "_meta": {
+      "title": "Image Save"
+    }
+  }
+}
